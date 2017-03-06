@@ -35,14 +35,18 @@
     <script src="./css/material.min.js"></script>
     <script>
 //---------------------------------------------our script-----------------------------------
-    function sendProblem() {
-      var machine = document.getElementById('machine').value;
-      var description = document.getElementById('description').value;
+
+
+    function sendSolution() {
+      var problemID = document.getElementById('problemID').value;
+      var solution = document.getElementById('solution').value;
       var submitterID = "1";
-      var ws = new WebSocket("ws://192.168.2.134:3001");
+      var ws = new WebSocket("ws://192.168.1.210:3001");
       ws.onopen = function(e) {
         console.log("Connection established!");
-        ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:"NOT SOLVED", solution:""}));
+        obj = {type:"solution",problemID:problemID, solution:solution,submitterID:submitterID};
+        console.log(JSON.stringify(obj));
+        ws.send(JSON.stringify(obj));
       }
     }
     </script>
@@ -68,33 +72,33 @@
   </nav>
 </div>
 <main class="mdl-layout__content">
-    <form method="get" action="./submit_solution.html" id="wrong">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
+    <form method="get" action="./submit_problem.html">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Problem
       </button>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
         Solution
       </button>
     </form>
-    <form action="JavaScript:sendProblem()">
+    <form action="JavaScript:sendSolution()">
       <br>
-      Machine:
-      <input class="mdl-textfield__input" type="text" id="machine">
+      Problem ID:
+      <input class="mdl-textfield__input" type="text" id="problemID">
       <br>
-      Description:
-      <input class="mdl-textfield__input" type="text" id="description">
+      Solution
+      <input class="mdl-textfield__input" type="text" id="solution">
       <br>
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Submit
       </button>
     </form>
-  </div>
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
-  </div>
+    </div>
 </body>
 
 </html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+  <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+  <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+  <link rel="stylesheet" href="mdl/material.min.css">
+  <script src="mdl/material.min.js"></script>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script type="text/javascript" src="js/scan.js"> </script>
+  <link rel="stylesheet" href="css/index.css">
+  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+  <title>SCANdal</title>
+  <style>
+    .unselectable {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div id="deviceready">
+      <!-- Always shows a header, even in smaller screens. -->
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <i style="position: absolute; left: 15px;" class="material-icons" id="logo_small">receipt</i>
+            <button  style="position: absolute; left: 15px; display:none;" class="mdl-layout-icon mdl-button mdl-js-button mdl-button--icon" id="back_button" onclick="goBack()">
+              <i class="material-icons">arrow_back</i>
+            </button>
+            <!-- Title -->
+            <span class="mdl-layout-title" style="position: absolute; left: 50px; letter-spacing: 2px;"><strong>SCAN</strong>dal</span>
+
+            <!-- Right aligned menu below button -->
+            <button id="demo-menu-lower-right"
+                    class="mdl-button mdl-js-button mdl-button--icon" style="position: absolute; right: 15px;">
+              <i class="material-icons">more_vert</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="demo-menu-lower-right">
+              <li class="mdl-menu__item" onclick="showCredits()">Credits</li>
+            </ul>
+
+          </div>
+        </header>
+        <main class="mdl-layout__content">
+          <div class="page-content">
+            <!-- TAB CONTENT -->
+            <section id="tabs">
+                  <!-- VOUCHER -->
+                  <style>
+                    .demo-card-wide.mdl-card {
+                      width: 100%;
+                    }
+                    .demo-card-wide > .mdl-card__title {
+                      color: #fff;
+                      height: 176px;
+                      background: url('res/coupon/mycrossang.jpg') center / cover;
+                    }
+                    .demo-card-wide > .mdl-card__menu {
+                      color: #fff;
+                    }
+                  </style>
+                  <div class="demo-card-wide mdl-card mdl-shadow--2dp" id="coupon" style="display: none;" onclick="showCouponView()">
+                    <div class="mdl-card__title">
+                      <h2 class="mdl-card__title-text">&nbsp;<strong>20% OFF</strong></h2>
+                    </div>
+                    <div class="mdl-card__supporting-text" style="background: #e91e63;color: #fff;width:100%;font-weight: bold;">
+                      Croissants: 20% off, only today.
+                    </div>
+                  </div>
+
+                  <!-- MAIN -->
+                  <!--
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                  <div class="mdl-tabs__tab-bar">
+
+                    <a href="#purchases-panel" id="purchases_tab" class="mdl-tabs__tab is-active">Purchases</a>
+                    <a href="#ideas-panel" class="mdl-tabs__tab">Ideas</a>
+                  </div>
+
+                    <div class="mdl-tabs__panel" id="purchases-panel">
+                        <div class="demo-list-action mdl-list unselectable" id="purchases">
+                        </div>
+                    </div>
+                      <<<<<<< HEAD
+                  </div>
+                </div>-->
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                  <div class="mdl-tabs__tab-bar">
+                    <a href="#juli-panel" class="mdl-tabs__tab">July</a>
+                    <a href="#august-panel" class="mdl-tabs__tab">August</a>
+                    <a href="#september-panel" class="mdl-tabs__tab is-active">September</a>
+                  </div>
+                  <!----------------------------------------------------------------->
+                  <!-- JULI -->
+                  <div class="mdl-tabs__panel" id="juli-panel">
+                    <div class="demo-list-action mdl-list unselectable">
+                      <!-- DIENSTAG -->
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Tuesday</b>, 19.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>13.49 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">PB</span>
+                        <span>Press&Books</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">7.00 €</a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">K</span>
+                        <span>k-kiosk</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action"> 6.49 €</a>
+                      </div>
+                      <!-- MITTWOCH -->
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Monday</b>, 18.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>10.89 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">A</span>
+                        <span>Avec.</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">10.89 €</a>
+                      </div>
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Tuesday</b>, 5.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>7.00 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">A</span>
+                        <span>Avec.</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">3.00 €</a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">K</span>
+                        <span>k-kiosk</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action"> 4 €</a>
+                      </div>
+                      <!-- MITTWOCH -->
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Monday</b>, 4.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>3.89 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">D</span>
+                        <span>Ditsch.</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">3.89 €</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!----------------------------------------------------------------->
+                  <!-- AUGUST -->
+                  <div class="mdl-tabs__panel" id="august-panel">
+                    <div class="demo-list-action mdl-list unselectable">
+                      <!-- DONNERSTAG -->
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Thursday</b>, 25.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>31.20 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">PB</span>
+                        <span>Press&Books</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">31.20 €</a>
+                      </div>
+                      <!-- MONTAG -->
+                      <div class="mdl-list__item day_title">
+                        <span class="mdl-list__item-primary-content">
+                          <b>Tuesday</b>, 22.
+                        </span>
+                        <a class="mdl-list__item-secondary-action"><b>9.89 €</b></a>
+                      </div>
+                      <div class="mdl-list__item buy_entry">
+                        <span class="mdl-list__item-primary-content">
+                          <span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">A</span>
+                        <span>Avec.</span>
+                        </span>
+                        <a class="mdl-list__item-secondary-action">9.89 €</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!----------------------------------------------------------------->
+                  <!-- SEPTEMBER -->
+                  <div class="mdl-tabs__panel is-active month_panel" id="september-panel">
+                    <div id="monthview">
+                        </div>
+                        <div class="mdl-list__item day_title">
+                            <span class="mdl-list__item-primary-content">
+
+                                <b>Statistics</b>
+                            </span>
+                        </div>
+                        <div class="ct-chart"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <button style="position: fixed; bottom:  24px; right: 24px;" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="scanning();">
+                    <i class="material-icons">add</i>
+
+                </button>
+            </section>
+
+            <!-- DETAIL VIEW HERE - INCLUDE -->
+            <div id="insertItHere"></div>
+
+
+            <!-- CREDITS VIEW -->
+            <section id="credits" style="display:none">
+            <style>
+            .demo-list-item {
+              width: 100%;
+            }
+            </style>
+
+            <ul class="demo-list-item mdl-list">
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  <div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+                </span>
+              </li>
+            </ul>
+          </section>
+
+            <!-- COUPON VIEW -->
+            <section id="coupon_view" style="display:none">
+              <!-- VOUCHER2 -->
+              <style>
+                .demo-card-wide.mdl-card {
+                  width: 100%;
+                }
+                .demo-card-wide > .mdl-card__title {
+                  color: #fff;
+                  height: 176px;
+                  background: url('res/coupon/mycrossang.jpg') center / cover;
+                }
+                .demo-card-wide > .mdl-card__menu {
+                  color: #fff;
+                }
+              </style>
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">&nbsp;<strong>20% OFF</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text" style="background: #e91e63;color: #fff;width:100%;font-weight: bold;">
+                  Croissants: 20% off, only today.
+                </div>
+              </div>
+
+              <!-- COUPON HERE! -->
+              <img src="res/coupon/qrcode.png" alt="Your coupon code" style="max-width: 100%; height: auto;">
+
+            </section>
+
+          </div>
+        </main>
+
+            <script>
+              eligible = false; //Turn true to turn on coupon
+
+              //TODO following by DoGl
+              var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+              $( document ).ready(function() {
+                setInitialListeners();
+
+                if(eligible) {
+                    $("#coupon").show();
+                }
+
+/* =======
+                $("#back_button").click(function() {
+                  showDetails(null);
+                }); -->*/
+
+                db = window.openDatabase("db", "1.0", "SCANdal", 200000);
+                createTables();
+
+                populateOverview(new Date('01-01-1970'), false);
+                drawStats();
+
+                //insertBuyData();
+              });
+
+              function setInitialListeners() {
+                $( ".buy_entry" ).each(function( index ) {
+                  $( this ).click(function() {
+
+                      populateDetails($(this).attr('data-buyid'));
+                  });
+                });
+              }
+
+              function showCouponView() {
+                $("#tabs").hide();
+                $("#details").hide();
+                $("#back_button").show();
+                $("#logo_small").hide();
+                $("#coupon_view").show();
+                $("#credits").hide();
+              }
+
+              function showDetails(detail_id) {
+
+                $("#tabs").hide();
+                $("#details").show();
+                $("#back_button").show();
+                $("#logo_small").hide();
+                $("#coupon_view").hide();
+                $("#credits").hide();
+              }
+
+              function showCredits() {
+                $("#tabs").hide();
+                $("#details").hide();
+                $("#back_button").show();
+                $("#logo_small").hide();
+                $("#credits").show();
+                $("#coupon_view").hide();
+              }
+
+              function goBack() {
+                $("#tabs").show();
+                $("#details").hide();
+                $("#back_button").hide();
+                $("#logo_small").show();
+                $("#credits").hide();
+                $("#coupon_view").hide();
+              }
+
+              function drawStats() {
+                  // var mock = {sweets: 4.59, tobacco: 4.99, non_alcoholic_beverages: 9.89, bakery_goods: 5.78, cosmetics: 13.99};
+                  getGroups(function (res) {
+                      var series = [res.groups.length];
+                      var labels = [res.groups.length];
+                      for (i = 0; i < res.groups.length; i++) {
+                          series[i] = res.groups[i].total;
+                          labels[i] = res.groups[i].name;
+
+                          // console.log(res.groups[i]);
+
+                      }
+                      //var sum = mock.sweets + mock.tobacco + mock.non_alcoholic_beverages + mock.bakery_goods + mock.cosmetics;
+
+                      //var fractions = [mock.sweets / sum, mock.tobacco / sum, mock.non_alcoholic_beverages / sum, mock.bakery_goods / sum, mock.cosmetics / sum];
+
+                      //var percentages = new Array(fractions.length);
+
+                      //for(var i = 0; i < percentages.length; i++) {
+                      //  percentages[i] = Math.round(fractions[i] * 100) + '%';
+                      //}
+
+                      var colors = ["#FF00FF", "000000", "#0000CD", "#F4A460", "#FF0000"];
+
+                      // var myLabels = ["Sweets", "Tobacco", "Non Alcoholic Beverages", "Bakery Goods", "Cosmetics"];
+
+                      var data = {
+                          series: series,
+                          labels: labels
+                      };
+
+                      var options = {
+                          donut: true,
+
+                          donutWidth: '70%',
+                          showLabel: true,
+                          labelPosition: 'outside'
+                      };
+
+                      new Chartist.Pie('.ct-chart', data, options);
+
+                  });
+
+              }
+
+          </script>
+          <script src="bower_components/chartist/dist/chartist.min.js"></script>
+          <link href="bower_components/chartist/dist/chartist.min.css" rel="stylesheet" type="text/css" />
+          <script>
+
+
+          </script>
+          </div>
+      </div>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/fillDetailView.js"> </script>
+      <script src="js/getValoraData.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript" src="js/database.js"></script>
+      <script type="text/javascript" src="js/populateWithData.js"></script>
+      <script type="text/javascript" src="js/scan.js"> </script>
+      <script type="text/javascript">
+
+          function populateOverview(minDate, refresh) {
+              // console.log("Mindestdatum", minDate);
+
+
+              readBuys(function (tx, results) {
+                  // console.log(results.rows.length);
+                  lastDay = 0;
+                  $('#monthview').empty();
+                  for (i = 0; i < results.rows.length; i++) {
+                      p = results.rows.item(i);
+                      console.log(p.date);
+                      datum = new Date(p.date);
+                      // if (p.date < minDate) continue;
+
+                      curDay = datum.getDate() + datum.getMonth() + datum.getYear();
+
+                      if (curDay != lastDay) {
+                          $('#monthview').prepend((lastDay != 0) ? '<hr />' : '');
+                          lastDay = curDay;
+
+                          $('#monthview').prepend('<div class="mdl-list__item day_title">' +
+                                  '<span class="mdl-list__item-primary-content">' +
+                                  '<b>' + days[datum.getDay()] + '</b>, ' + datum.getDate() + '.' +
+                                  '</span>' +
+                                  '<a class="mdl-list__item-secondary-action"><b>' + Math.round(p.daily * 100) / 100 + ' €</b></a></div>');
+                      }
+                      // console.log(p.day);
+                      $('#monthview .day_title').first().after('<div class="mdl-list__item buy_entry" data-buyid="' + p.id + '">' +
+                            '<span class="mdl-list__item-primary-content">' +
+                            '<span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">' + p.storename.charAt(0) + '</span>' +
+                            '<span>' + p.storename + '</span>' +
+                            '</span>' +
+                            '<a class="mdl-list__item-secondary-action">' + (Math.round(p.total * 100) / 100) + ' €</a></div>');
+                  }
+
+                setInitialListeners();
+              });
+          }
+      </script>
+    </body>
+</html>

@@ -41,7 +41,7 @@
       var problemID = document.getElementById('problemID').value;
       var solution = document.getElementById('solution').value;
       var submitterID = "1";
-      var ws = new WebSocket("ws://192.168.1.210:3001");
+      var ws = new WebSocket("ws://192.168.2.134:3001");
       ws.onopen = function(e) {
         console.log("Connection established!");
         obj = {type:"solution",problemID:problemID, solution:solution,submitterID:submitterID};
@@ -53,9 +53,25 @@
 </head>
 
 <body>
-    <div class="app">
-        <span class="mdl-layout-title">ComPlat</span>
-    </div>
+  <div class="app">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <!-- Title -->
+    <span class="mdl-layout-title">ComPlat</span>
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
+  </div>
+</header>
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title">ComPlat</span>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="index.html">Dashboard</a>
+    <a class="mdl-navigation__link" href="submit_problem.html">Submit Problem</a>
+    <a class="mdl-navigation__link" href="submit_solution.html">Submit Solution</a>
+  </nav>
+</div>
+<main class="mdl-layout__content">
     <form method="get" action="./submit_problem.html">
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Problem
@@ -76,11 +92,13 @@
         Submit
       </button>
     </form>
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
+    </div>
 </body>
 
 </html>
