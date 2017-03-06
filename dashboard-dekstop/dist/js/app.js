@@ -232,6 +232,8 @@ $(function () {
  * All AdminLTE functions are implemented below.
  */
 function _init() {
+
+   illuminateGreen();
   'use strict';
   /* Layout
    * ======
@@ -770,3 +772,14 @@ function _init() {
     });
   };
 }(jQuery));
+
+function illuminateGreen() {
+  clearLights();
+  document.getElementById('stopLight').style.backgroundColor = "green";
+}
+
+function clearLights() {
+  document.getElementById('stopLight').style.backgroundColor = "black";
+  document.getElementById('slowLight').style.backgroundColor = "black";
+  document.getElementById('goLight').style.backgroundColor = "black";
+}
