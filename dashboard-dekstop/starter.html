@@ -54,14 +54,14 @@ desired effect
 |---------------------------------------------------------|
 -->
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
   <div class="wrapper">
 
     <!-- Main Header -->
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="starter.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>C</b>PT</span>
         <!-- logo for regular state and mobile devices -->
@@ -204,17 +204,7 @@ desired effect
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
 
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Thomas Eddison</p>
-            <!-- Status -->
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
+
 
         <!-- search form (Optional) -->
         <form action="#" method="get" class="sidebar-form">
@@ -258,11 +248,11 @@ desired effect
       <section class="content-header">
         <h1>
           Dashboard
-          <small>All your energy savings at one glance!</small>
+          <small>All your energy savings at a glance!</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-          <li class="active">Here</li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li class="active">Overview</li>
         </ol>
       </section>
 
@@ -324,7 +314,7 @@ desired effect
                     <td>Boiler XY</td>
                     <td><span class="label label-success">Ok</span></td>
                     <td>
-                      <a class="btn btn-default fa fa-user" onclick="sendProblem();"> 
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();">
                       </a>
                     </td>
                   </tr>
@@ -334,7 +324,7 @@ desired effect
               <!-- /.table-responsive -->
             </div>
             <!-- /.box-body -->
-          
+
           </div>
           <!-- /.box -->
         </div>
@@ -349,10 +339,10 @@ desired effect
     <footer class="main-footer">
       <!-- To the right -->
       <div class="pull-right hidden-xs">
-        Anything you want
+        Making energy saving a breeze
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2017 <a href="#">ComPlat</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -535,7 +525,7 @@ desired effect
       if (realtime === "on") {
         update();
       }
-      
+
       //REALTIME TOGGLE
       $("#realtime .btn").click(function () {
         if ($(this).data("toggle") === "on") {

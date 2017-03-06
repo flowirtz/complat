@@ -52,14 +52,14 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 <div class="wrapper">
 
   <!-- Main Header -->
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="starter.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>PT</span>
       <!-- logo for regular state and mobile devices -->
@@ -200,17 +200,7 @@ desired effect
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Thomas Eddison</p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+
 
       <!-- search form (Optional) -->
       <form action="#" method="get" class="sidebar-form">
@@ -228,8 +218,8 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">Actions</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="starter.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="rules.html"><i class="fa fa-legal"></i> <span>Rules</span></a></li>
+        <li><a href="starter.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="rules.html"><i class="fa fa-legal"></i> <span>Rules</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -266,7 +256,7 @@ desired effect
     <section class="content">
 
       <!-- Your Page Content Here -->
-      <!-- SELECT2 EXAMPLE -->
+      <!-- NEW RULE -->
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Create new rule</h3>
@@ -356,7 +346,7 @@ desired effect
           <button type="submit" id="createRule" class="btn btn-primary">Add rule</button>
         </div>
       </div>
-      <!-- /.box -->
+      <!-- END OF NEW RULE -->
 
 
       <!-- RULES LIST -->
@@ -365,7 +355,7 @@ desired effect
 
         <div class="box box-success collapsed-box ruleBox">
           <div class="box-header with-border">
-            <h3 class="box-title">Close windows if raining</h3>
+            <h3 class="box-title"><i class="fa fa-cloud pull-left"></i>Close windows if raining</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool pauseRule">
@@ -384,7 +374,7 @@ desired effect
 
         <div class="box box-success collapsed-box ruleBox">
           <div class="box-header with-border">
-            <h3 class="box-title">Catch machines exceeding thresholds</h3>
+            <h3 class="box-title"><i class="fa fa-industry pull-left"></i>Catch machines exceeding thresholds</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool pauseRule">
@@ -394,12 +384,10 @@ desired effect
             <!-- /.box-tools -->
           </div>
           <!-- /.box-header -->
-          
+
         </div>
         <!-- END OF RULES LIST -->
       </div> <!-- ruleList div-->
-
-
 
       <script>
         $(document).ready(function() {
@@ -435,7 +423,7 @@ desired effect
       Making energy saving a breeze
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">ComPlat</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">ComPlat</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
