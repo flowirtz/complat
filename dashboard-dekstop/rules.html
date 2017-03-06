@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -228,7 +229,7 @@ desired effect
         <li class="header">Actions</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="starter.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="starter.html"><i class="fa fa-legal"></i> <span>Rules</span></a></li>
+        <li><a href="rules.html"><i class="fa fa-legal"></i> <span>Rules</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -265,7 +266,162 @@ desired effect
     <section class="content">
 
       <!-- Your Page Content Here -->
+      <!-- SELECT2 EXAMPLE -->
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Create new rule</h3>
 
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>I want to call my rule:</label>
+                <input class="form-control" placeholder="Lobster" type="text" id="nr-title">
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Monitor the</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Heater</option>
+                  <option>Machine #1</option>
+                  <option>Machine #2</option>
+                  <option>Machine #3</option>
+                  <option>Outside Temperature</option>
+                  <option>Cooler</option>
+                  <option>Weather</option>
+                </select>
+              </div>
+              <!-- /.form-group -->
+              <div class="row">
+              <div class="form-group col-xs-9">
+                <label>If it is</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Warmer than</option>
+                  <option>Colder than</option>
+                  <option>exactly</option>
+                </select>
+              </div>
+
+              <div class="col-xs-3">
+                <label>Temperature</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="25" type="number">
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+              <!-- /.form-group -->
+              </div>
+          </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="row">
+              <div class="form-group col-xs-9">
+                <label>Then do the following</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Start heating</option>
+                  <option>Stop heating</option>
+                  <option>Set temperature to</option>
+                  <option>Give everybody a raise</option>
+                </select>
+              </div>
+
+              <div class="col-xs-3">
+                <label>Temperature</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="XX" type="number" disabled="disabled">
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+              <!-- /.form-group -->
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button type="submit" id="createRule" class="btn btn-primary">Add rule</button>
+        </div>
+      </div>
+      <!-- /.box -->
+
+
+      <!-- RULES LIST -->
+      <div id="ruleList">
+        <h2>All your rules</h2>
+
+        <div class="box box-success collapsed-box ruleBox">
+          <div class="box-header with-border">
+            <h3 class="box-title">Close windows if raining</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool pauseRule">
+                <i class="fa fa-pause"></i>
+              </button>
+            </div>
+            <!-- /.box-tools -->
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body" style="display: none;">
+            Monitor the <b>Weather</b>
+            If it is <b>raining</b><br>
+            Close the <b>windows</b>.
+          </div>
+        </div>
+
+        <div class="box box-success collapsed-box ruleBox">
+          <div class="box-header with-border">
+            <h3 class="box-title">Catch machines exceeding thresholds</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool pauseRule">
+                <i class="fa fa-pause"></i>
+              </button>
+            </div>
+            <!-- /.box-tools -->
+          </div>
+          <!-- /.box-header -->
+          
+        </div>
+        <!-- END OF RULES LIST -->
+      </div> <!-- ruleList div-->
+
+
+
+      <script>
+        $(document).ready(function() {
+          $(".pauseRule").click(function() {
+            $(this).find("i").toggleClass("fa-pause");
+            $(this).find("i").toggleClass("fa-play");
+            $(this).closest(".ruleBox").toggleClass("box-success");
+            $(this).closest(".ruleBox").toggleClass("box-danger");
+          });
+
+          $(".box-header").click(function() {
+            $(this).closest(".ruleBox").toggleClass("collapsed-box");
+            $(this).next(".box-body").toggle();
+          });
+
+          $("button#createRule").click(function(e) {
+            var title = $("#nr-title").val();
+            var fuckinLongElement = '<div class="box box-success collapsed-box ruleBox"> <div class="box-header with-border"> <h3 class="box-title">' + title + '</h3> <div class="box-tools pull-right"> <button type="button" class="btn btn-box-tool pauseRule"> <i class="fa fa-pause"></i> </button> </div></div><div class="box-body" style="display: none;"> The body of the box </div></div>';
+            $(this).parent().parent().next("#ruleList").append(fuckinLongElement);
+          })
+        });
+      </script>
 
     </section>
     <!-- /.content -->
