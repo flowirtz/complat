@@ -8,11 +8,16 @@ var server = ws.createServer(function (conn) {
     var obj = JSON.parse(str);
     if (obj.type == "problem") {
       problemList.push(obj);
+      problemList[problemList.length - 1].problemID = problemList.length - 1;
       //notify...
     } else if (obj.type == "solution") {
       problemList[obj.problemID].solved = true;
       problemList[obj.problemID].solution = obj.solution;
-      };
+    } else if (obj.type == "list_request") {
+      console.log(problemList)
+      conn.sendText(JSON.stringify({list:problemList}));
+    }
+
   });
   conn.on("close", function (code, reason) {
     console.log(reason);

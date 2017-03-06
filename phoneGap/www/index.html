@@ -22,6 +22,7 @@
 <html>
 
 <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -43,12 +44,45 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/material.min.css">
     <script src="./css/material.min.js"></script>
+    <script>
+//---------------------------------------------our script-----------------------------------
+    function getList() {
+      var ws = new WebSocket("ws://192.168.1.210:3001");
+      ws.onopen = function(e) {
+        console.log("Connection established!");
+        ws.send(JSON.stringify({type:"list_request"}));
+      }
+      ws.onmessage = function (evt) {
+              var received_msg = JSON.parse(evt.data);
+              var problemlist = $("#problemlist");
+              problemlist.empty();
+              for (var i = 0; i < received_msg.list.length; i++) {
+                problemlist.append('<tr><th>' + received_msg.list[i].problemID + '</th><th>' + received_msg.list[i].description + '</th><th>' + received_msg.list[i].submitterID +  "</th></tr>");
+                problemlist.append('<br>');
+            }
+
+    }
+  }
+  getList();
+
+    </script>
 </head>
 
 <body>
     <div class="app">
         <span class="mdl-layout-title">ComPlat</span>
     </div>
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">ID</th>
+      <th>Description</th>
+      <th>Submitter</th>
+    </tr>
+  </thead>
+  <tbody id=problemlist>
+  </tbody>
+</table>
     <form method="get" action="submit_problem.html">
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick="./new_entry.html">
         New Entry
