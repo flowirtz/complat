@@ -1,7 +1,7 @@
 var ws = require("nodejs-websocket");
 var fs = require("fs");
 var problemList=[];
-var userdict;
+var userdict = {list:[]};
 var exec = require('child_process').exec;
 
 var server = ws.createServer(function (conn) {
@@ -17,7 +17,11 @@ var server = ws.createServer(function (conn) {
     } else if (obj.type == "solution") {
       problemList[obj.problemID].solved = obj.submitterID;
       problemList[obj.problemID].solution = obj.solution;
-
+      for (entry in userdict.list) {
+        if (entry.user = obj.submitterID) {
+          entry+= 10;
+        }
+      }
     } else if (obj.type == "list_request") {
       console.log(problemList)
       conn.sendText(JSON.stringify({list:problemList}));

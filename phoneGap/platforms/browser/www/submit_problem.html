@@ -38,8 +38,8 @@
     function sendProblem() {
       var machine = document.getElementById('machine').value;
       var description = document.getElementById('description').value;
-      var submitterID = "1";
-      var ws = new WebSocket("ws://192.168.2.134:3001");
+      var submitterID = "Dave";
+      var ws = new WebSocket("ws://192.168.1.210:3001");
       ws.onopen = function(e) {
         console.log("Connection established!");
         ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:"NOT SOLVED", solution:""}));
@@ -65,6 +65,7 @@
     <a class="mdl-navigation__link" href="index.html">Dashboard</a>
     <a class="mdl-navigation__link" href="submit_problem.html">Submit Problem</a>
     <a class="mdl-navigation__link" href="submit_solution.html">Submit Solution</a>
+    <a class="mdl-navigation__link" href="scoreboard.html">Scoreboard</a>
   </nav>
 </div>
 <main class="mdl-layout__content">

@@ -37,18 +37,24 @@
 //---------------------------------------------our script-----------------------------------
 
 
-    function sendSolution() {
-      var problemID = document.getElementById('problemID').value;
-      var solution = document.getElementById('solution').value;
-      var submitterID = "1";
-      var ws = new WebSocket("ws://192.168.2.134:3001");
-      ws.onopen = function(e) {
-        console.log("Connection established!");
-        obj = {type:"solution",problemID:problemID, solution:solution,submitterID:submitterID};
-        console.log(JSON.stringify(obj));
-        ws.send(JSON.stringify(obj));
-      }
-    }
+function getList() {
+  var ws = new WebSocket("ws://192.168.2.134:3001");
+  ws.onopen = function(e) {
+    console.log("Connection established!");
+    ws.send(JSON.stringify({type:"scoreboard_request"}));
+  }
+  ws.onmessage = function (evt) {
+          var received_msg = JSON.parse(evt.data);
+          var scoreboard = $("#scoreboard");
+          problemlist.empty();
+          for (var i = 0; i < received_msg.list.length; i++) {
+            problemlist.append('<tr><th>' + received_msg.list[i].problemID + '</th><th>' + received_msg.list[i].description + '</th><th>' + received_msg.list[i].submitterID +  "</th><th>" + received_msg.list[i].solved + "</th></tr>");
+            problemlist.append('<br>');
+        }
+
+}
+}
+getList();
     </script>
 </head>
 
@@ -69,30 +75,24 @@
     <a class="mdl-navigation__link" href="index.html">Dashboard</a>
     <a class="mdl-navigation__link" href="submit_problem.html">Submit Problem</a>
     <a class="mdl-navigation__link" href="submit_solution.html">Submit Solution</a>
+    <a class="mdl-navigation__link" href="scoreboard.html">Scoreboard</a>
   </nav>
 </div>
 <main class="mdl-layout__content">
-    <form method="get" action="./submit_problem.html">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Problem
-      </button>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
-        Solution
-      </button>
-    </form>
-    <form action="JavaScript:sendSolution()">
-      <br>
-      Problem ID:
-      <input class="mdl-textfield__input" type="text" id="problemID">
-      <br>
-      Solution
-      <input class="mdl-textfield__input" type="text" id="solution">
-      <br>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Submit
-      </button>
-    </form>
-    </div>
+    <div class="page-content">
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th>Employee</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody id="scoreboard">
+    </tbody>
+  </table>
+      </div>
+</main>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">

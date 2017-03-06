@@ -35,16 +35,26 @@
     <script src="./css/material.min.js"></script>
     <script>
 //---------------------------------------------our script-----------------------------------
-    function sendProblem() {
-      var machine = document.getElementById('machine').value;
-      var description = document.getElementById('description').value;
-      var submitterID = "Dave";
-      var ws = new WebSocket("ws://192.168.1.210:3001");
-      ws.onopen = function(e) {
-        console.log("Connection established!");
-        ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:"NOT SOLVED", solution:""}));
-      }
-    }
+
+
+function getList() {
+  var ws = new WebSocket("ws://192.168.2.134:3001");
+  ws.onopen = function(e) {
+    console.log("Connection established!");
+    ws.send(JSON.stringify({type:"scoreboard_request"}));
+  }
+  ws.onmessage = function (evt) {
+          var received_msg = JSON.parse(evt.data);
+          var scoreboard = $("#scoreboard");
+          problemlist.empty();
+          for (var i = 0; i < received_msg.list.length; i++) {
+            problemlist.append('<tr><th>' + received_msg.list[i].problemID + '</th><th>' + received_msg.list[i].description + '</th><th>' + received_msg.list[i].submitterID +  "</th><th>" + received_msg.list[i].solved + "</th></tr>");
+            problemlist.append('<br>');
+        }
+
+}
+}
+getList();
     </script>
 </head>
 
@@ -69,33 +79,26 @@
   </nav>
 </div>
 <main class="mdl-layout__content">
-    <form method="get" action="./submit_solution.html" id="wrong">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
-        Problem
-      </button>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Solution
-      </button>
-    </form>
-    <form action="JavaScript:sendProblem()">
-      <br>
-      Machine:
-      <input class="mdl-textfield__input" type="text" id="machine">
-      <br>
-      Description:
-      <input class="mdl-textfield__input" type="text" id="description">
-      <br>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Submit
-      </button>
-    </form>
-  </div>
+    <div class="page-content">
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th>Employee</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody id="scoreboard">
+    </tbody>
+  </table>
+      </div>
+</main>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
-  </div>
+    </div>
 </body>
 
 </html>
