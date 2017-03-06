@@ -33,26 +33,44 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/material.min.css">
     <script src="./css/material.min.js"></script>
+    <script>
+//---------------------------------------------our script-----------------------------------
+    function sendProblem() {
+      var machine = document.getElementById('machine').value;
+      var description = document.getElementById('description').value;
+      var submitterID = "1";
+      var ws = new WebSocket("ws://192.168.1.210:3001");
+      ws.onopen = function(e) {
+        console.log("Connection established!");
+        ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:false, solution:""}));
+      }
+    }
+    </script>
 </head>
 
 <body>
     <div class="app">
         <span class="mdl-layout-title">ComPlat</span>
     </div>
-    <form method="get" action="new_entry.html">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick="./new_entry.html" disabled>
+    <form method="get" action="./submit_solution.html" id="wrong">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
         Problem
       </button>
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick="./new_entry.html">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Solution
       </button>
-    <form>
+    </form>
+    <form action="JavaScript:sendProblem()">
+      <br>
+      Machine:
+      <input class="mdl-textfield__input" type="text" id="machine">
       <br>
       Description:
       <input class="mdl-textfield__input" type="text" id="description">
       <br>
-      Machine:
-      <input class="mdl-textfield__input" type="text" id="description">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Submit
+      </button>
     </form>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
