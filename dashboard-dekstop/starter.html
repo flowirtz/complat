@@ -324,7 +324,7 @@ desired effect
                     <td>Boiler XY</td>
                     <td><span class="label label-success">Ok</span></td>
                     <td>
-                      <a class="btn btn-default fa fa-user"> 
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();"> 
                       </a>
                     </td>
                   </tr>
@@ -722,6 +722,20 @@ desired effect
         + Math.round(series.percent) + "%</div>";
     }
 
+  </script>
+
+  <!-- Send Problem script -->
+  <script>
+    function sendProblem() {
+      var machine = "1";
+      var description = "";
+      var submitterID = "BOSS";
+      var ws = new WebSocket("ws://192.168.1.210:3001");
+      ws.onopen = function(e) {
+        console.log("Connection established!");
+        ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:false, solution:""}));
+      }
+    }
   </script>
   <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
