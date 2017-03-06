@@ -41,7 +41,7 @@
       var problemID = document.getElementById('problemID').value;
       var solution = document.getElementById('solution').value;
       var submitterID = "1";
-      var ws = new WebSocket("ws://192.168.1.210:3001");
+      var ws = new WebSocket("ws://192.168.2.134:3001");
       ws.onopen = function(e) {
         console.log("Connection established!");
         obj = {type:"solution",problemID:problemID, solution:solution,submitterID:submitterID};
