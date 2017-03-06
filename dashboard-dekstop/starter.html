@@ -298,139 +298,284 @@ desired effect
         <!-- /.row -->
 
         <!-- TABLE: LATEST ORDERS -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">System Details</h3>
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">System Details</h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table no-margin">
+                <thead>
                   <tr>
                     <th>System Component</th>
                     <th>Status</th>
                     <th>Send Employee</th>
                   </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                   <tr>
-                    <td>Boiler XY</td>
+                    <td>Machine A</td>
                     <td><span class="label label-success">Ok</span></td>
                     <td>
-                      <a class="btn btn-default fa fa-user" onclick="sendProblem();"> 
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();">
                       </a>
                     </td>
                   </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.table-responsive -->
+                  <tr>
+                    <td>Machine B</td>
+                    <td><span class="label label-success">Ok</span></td>
+                    <td>
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Heating in Building A</td>
+                    <td><span class="label label-success">Ok</span></td>
+                    <td>
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Heating in Building B</td>
+                    <td><span class="label label-warning">Warning</span></td>
+                    <td>
+                      <a class="btn btn-default fa fa-user" onclick="sendProblem();">
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <!-- /.box-body -->
-          
+            <!-- /.table-responsive -->
           </div>
-          <!-- /.box -->
+          <!-- /.box-body -->
         </div>
-        <!-- /.col -->
+        <!-- /.box -->
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="fa fa-wrench"></i></span>
 
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+              <div class="info-box-content">
+                <span class="info-box-text">Energy Leaks Fixed</span>
+                <span class="info-box-number">23</span>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="pull-right hidden-xs">
-        Anything you want
-      </div>
-      <!-- Default to the left -->
-      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Create the tabs -->
-      <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane active" id="control-sidebar-home-tab">
-          <h3 class="control-sidebar-heading">Recent Activity</h3>
-          <ul class="control-sidebar-menu">
-            <li>
-              <a href="javascript:;">
-                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                <div class="menu-info">
-                  <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                  <p>Will be 23 on April 24th</p>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
                 </div>
-              </a>
-            </li>
-          </ul>
-          <!-- /.control-sidebar-menu -->
-
-          <h3 class="control-sidebar-heading">Tasks Progress</h3>
-          <ul class="control-sidebar-menu">
-            <li>
-              <a href="javascript:;">
-                <h4 class="control-sidebar-subheading">
-                  Custom Template Design
-                  <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
+                <span class="progress-description">
+                    70% Increase in 5 Days
                   </span>
-                </h4>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <div class="info-box bg-orange">
+              <span class="info-box-icon"><i class="fa fa-exclamation-triangle"></i></span>
 
-                <div class="progress progress-xxs">
-                  <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              <div class="info-box-content">
+                <span class="info-box-text">Energy Leaks Detected</span>
+                <span class="info-box-number">12</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
                 </div>
-              </a>
-            </li>
-          </ul>
-          <!-- /.control-sidebar-menu -->
+                <span class="progress-description">
+                    40% Decrease in 5 Days
+                  </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </div>
+          <div class="col-xs-8">
+            <div class="box box-warning direct-chat direct-chat-warning">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Direct Chat</h3>
 
+                  <div class="box-tools pull-right">
+                    <span data-toggle="tooltip" title="3 New Messages" class="badge bg-yellow">3</span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+                      <i class="fa fa-comments"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <!-- Conversations are loaded here -->
+                  <div class="direct-chat-messages">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Alexander Connolly</span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Could you describe the problem a little more detailed, please?
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-right">Silvie Miller</span>
+                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        The throughput is higher than needed. Level it down a little.
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Alexander Connolly</span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Cool. Thanks!
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                  </div>
+                  <!--/.direct-chat-messages-->
+
+                  <!-- /.direct-chat-pane -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <form action="#" method="post">
+                    <div class="input-group">
+                      <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning btn-flat">Send</button>
+                          </span>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.box-footer-->
+              </div>
+              <!--/.direct-chat -->
+          </div>
         </div>
-        <!-- /.tab-pane -->
-        <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-        <!-- /.tab-pane -->
-        <!-- Settings tab content -->
-        <div class="tab-pane" id="control-sidebar-settings-tab">
-          <form method="post">
-            <h3 class="control-sidebar-heading">General Settings</h3>
 
-            <div class="form-group">
-              <label class="control-sidebar-subheading">
+    </div>
+    <!-- /.col -->
+
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="pull-right-container">
+                  <span class="label label-danger pull-right">70%</span>
+                </span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
               Report panel usage
               <input type="checkbox" class="pull-right" checked>
             </label>
 
-              <p>
-                Some information about this general settings option
-              </p>
-            </div>
-            <!-- /.form-group -->
-          </form>
-        </div>
-        <!-- /.tab-pane -->
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+        </form>
       </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
+  <div class="control-sidebar-bg"></div>
   </div>
   <!-- ./wrapper -->
 
@@ -454,6 +599,36 @@ desired effect
   <script src="plugins/flot/jquery.flot.pie.min.js"></script>
   <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
   <script src="plugins/flot/jquery.flot.categories.min.js"></script>
+
+<!-- Send Problem script -->
+  <script>
+
+    $(document).ready(function(){
+      switchToYellow();
+  
+}, 50000);
+
+    function switchToYellow(){
+        $('#goLight').removeClass("green-bulb");
+          $("#slowLight").addClass("yellow-bulb");
+    }
+
+    function switchToGreen(){
+        $('#goLight').addClass("green-bulb");
+          $("#slowLight").removeClass("yellow-bulb");
+    }
+
+    function sendProblem() {
+      var machine = "1";
+      var description = "";
+      var submitterID = "BOSS";
+      var ws = new WebSocket("ws://192.168.1.210:3001");
+      ws.onopen = function (e) {
+        console.log("Connection established!");
+        ws.send(JSON.stringify({ type: "problem", machineID: machine, description: description, submitterID: submitterID, solved: false, solution: "" }));
+      }
+    }
+  </script>
 
   <!-- Page script -->
   <script>
@@ -535,7 +710,7 @@ desired effect
       if (realtime === "on") {
         update();
       }
-      
+
       //REALTIME TOGGLE
       $("#realtime .btn").click(function () {
         if ($(this).data("toggle") === "on") {
@@ -721,22 +896,9 @@ desired effect
         + "<br>"
         + Math.round(series.percent) + "%</div>";
     }
-
   </script>
 
-  <!-- Send Problem script -->
-  <script>
-    function sendProblem() {
-      var machine = "1";
-      var description = "";
-      var submitterID = "BOSS";
-      var ws = new WebSocket("ws://192.168.1.210:3001");
-      ws.onopen = function(e) {
-        console.log("Connection established!");
-        ws.send(JSON.stringify({type:"problem",machineID:machine, description:description,submitterID:submitterID, solved:false, solution:""}));
-      }
-    }
-  </script>
+  
   <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
